@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum-Synchronized Stadium</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="brand">
+                <div class="logo-box">
+                    <i class="fa-solid fa-atom"></i>
+                </div>
+                <h2>Quantum<br>Stadium</h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="nav-item active" data-target="map-view">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span>Live Map</span>
+                </li>
+                <li class="nav-item" data-target="gates-view">
+                    <i class="fa-solid fa-door-open"></i>
+                    <span>Gates Status</span>
+                </li>
+                <li class="nav-item" data-target="food-view">
+                    <i class="fa-solid fa-burger"></i>
+                    <span>Food Stalls</span>
+                </li>
+                <li class="nav-item" data-target="nav-view">
+                    <i class="fa-solid fa-route"></i>
+                    <span>Navigation</span>
+                </li>
+            </ul>
+
+            <div class="nav-divider"></div>
+
+            <ul class="nav-links bottom">
+                <li class="nav-item assistant-btn" data-target="bot-view">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>AI Assistant</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Search facilities, seats, or stalls...">
+                </div>
+                <div class="profile-area">
+                    <div class="notification-wrapper">
+                        <div class="notification-bell" id="notif-btn">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="badge" id="notif-badge" style="display: none;">0</span>
+                        </div>
+                        <div class="notification-dropdown glass-panel" id="notif-dropdown">
+                            <div class="notif-header">
+                                <h4>Notifications</h4>
+                                <span class="mark-read" id="mark-read-btn">Mark all read</span>
+                            </div>
+                            <div class="notif-body" id="notif-list">
+                                <!-- Notifications generated here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-wrapper">
+                        <div class="profile-pic" id="profile-btn">
+                            <img src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff&rounded=true" alt="User Profile">
+                        </div>
+                        <div class="profile-dropdown glass-panel" id="profile-dropdown">
+                            <ul class="dropdown-menu">
+                                <li><i class="fa-regular fa-user"></i> User Info</li>
+                                <li><i class="fa-solid fa-gear"></i> Settings</li>
+                                <li class="dropdown-divider"></li>
+                                <li class="logout-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="view-container">
+                
+                <!-- Map View -->
+                <section id="map-view" class="view active">
+                    <div class="view-header">
+                        <h2>Live Stadium Map</h2>
+                        <p>Real-time crowd density and facility layout.</p>
+                    </div>
+                    <div class="map-card glass-panel">
+
+                        <div class="map-wrapper" id="stadium-map">
+                            <!-- Programmatic CSS stadium injected here -->
+                        </div>
+                        <div class="map-controls">
+                            <button class="control-btn" id="zoom-in"><i class="fa-solid fa-plus"></i></button>
+                            <button class="control-btn" id="zoom-out"><i class="fa-solid fa-minus"></i></button>
+                        </div>
+                        <div class="heatmap-legend">
+                            <span>Low</span>
+                            <div class="gradient-bar"></div>
+                            <span>High</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Gates View -->
+                <section id="gates-view" class="view">
+                    <div class="view-header">
+                        <h2>Gates Status</h2>
+                        <p>Live monitoring of stadium entry points.</p>
+                    </div>
+                    <div class="grid-layout" id="gates-grid">
+                        <!-- Gates cards injected by JS -->
+                    </div>
+                </section>
+
+                <!-- Food Stalls View -->
+                <section id="food-view" class="view">
+                    <div class="view-header">
+                        <h2>Food Stalls & Waiting Times</h2>
+                        <p>Predictive wait times across all concourses.</p>
+                    </div>
+                    <div class="filter-pills">
+                        <button class="pill active">All</button>
+                        <button class="pill">Fast Food</button>
+                        <button class="pill">Drinks</button>
+                        <button class="pill">Desserts</button>
+                    </div>
+                    <div class="grid-layout" id="food-grid">
+                        <!-- Food cards injected by JS -->
+                    </div>
+                </section>
+
+                <!-- Navigation View -->
+                <section id="nav-view" class="view">
+                    <div class="view-header">
+                        <h2>Smart Navigation</h2>
+                        <p>Find the fastest route to your destination.</p>
+                    </div>
+                    <div class="nav-layout">
+                        <div class="nav-form panel-left glass-panel">
+                            <h3>Plan Your Route</h3>
+                            <div class="input-group">
+                                <label>From</label>
+                                <div class="icon-input">
+                                    <i class="fa-solid fa-location-arrow"></i>
+                                    <input type="text" value="Gate A" id="nav-from">
+                                </div>
+                            </div>
+                            <div class="icon-swap">
+                                <i class="fa-solid fa-arrow-down-up-across-line"></i>
+                            </div>
+                            <div class="input-group">
+                                <label>To</label>
+                                <div class="icon-input">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <input type="text" placeholder="e.g. Block 104, Seat 12" id="nav-to">
+                                </div>
+                            </div>
+                            <button class="primary-btn neon-btn" id="calculate-route">Find Optimal Route</button>
+                        </div>
+                        <div class="nav-display panel-right glass-panel" id="nav-result" style="display: none;">
+                            <div class="route-summary">
+                                <h3>Route Mapped</h3>
+                                <div class="time-est">Est. Time: <span class="neon-text">4 mins</span></div>
+                            </div>
+                            <div class="route-map" id="mini-route-map">
+                                <!-- Mini map for navigation -->
+                            </div>
+                            <ul class="route-steps">
+                                <li><i class="fa-solid fa-arrow-up"></i> Go straight for 50m</li>
+                                <li><i class="fa-solid fa-arrow-right"></i> Turn right at Concourse B</li>
+                                <li><i class="fa-solid fa-stairs"></i> Take stairs to Level 2</li>
+                                <li><i class="fa-solid fa-flag-checkered"></i> Destination on your left</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bot View -->
+                <section id="bot-view" class="view">
+                    <div class="view-header">
+                        <h2>Quantum AI Assistant</h2>
+                        <p>Your intelligent concierges for any questions.</p>
+                    </div>
+                    <div class="chatbot-container glass-panel">
+                        <div class="chat-header">
+                            <div class="bot-avatar">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="bot-info">
+                                <h3>AURA Assistant</h3>
+                                <span><span class="status-dot"></span> Online</span>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="message bot">
+                                <p>Welcome to Quantum Stadium! How can I help you today? You can ask me about seat locations, food menus, or parking.</p>
+                                <span class="timestamp">Just now</span>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <div class="quick-replies">
+                                <button class="reply-btn">Where is Gate C?</button>
+                                <button class="reply-btn">Nearest restrooms?</button>
+                                <button class="reply-btn">Menu for Burger Hub</button>
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="text" id="chat-input" placeholder="Type your message here...">
+                                <button id="send-msg"><i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Right Panel: Multi-Agent System -->
+        <aside class="right-panel">
+            <div class="panel-header">
+                <h3><i class="fa-solid fa-microchip"></i> Agent System</h3>
+            </div>
+            <div class="agents-container" id="agents-list">
+                <!-- Agents injected by JS -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Agent Detail Modal -->
+    <div class="modal-overlay" id="agent-modal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3 id="modal-agent-title"><i class="fa-solid fa-microchip"></i> Agent Detail</h3>
+                <button class="close-modal-btn" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-agent-details">Loading details...</p>
+                
+                <div class="modal-metrics">
+                    <div class="metric-box">
+                        <div class="metric-label">Uptime</div>
+                        <div class="metric-value" style="font-size: 18px;">99.9%</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-label">Latency</div>
+                        <div class="metric-value" style="font-size: 18px;">12ms</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
