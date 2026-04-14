@@ -1,0 +1,17 @@
+{
+  "name": "quantum-synchronized-stadium",
+  "version": "1.0.0",
+  "description": "AI-powered real-time stadium management dashboard.",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^7.0.0",
+    "@google-cloud/vertexai": "^1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
+  }
+}
